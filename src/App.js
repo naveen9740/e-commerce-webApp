@@ -1,7 +1,15 @@
+import { Route, Routes, Link } from "react-router-dom";
+
 function App() {
   return (
     <div className="App">
-      <h2>E-commerce</h2>
+      <nav>
+        <Link to="/">Home</Link>
+      </nav>
+      <Routes>
+        <Route path="//" element={<Home />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
     </div>
   );
 }
