@@ -1,0 +1,15 @@
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid red;
+  height: 3.75rem;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+  text-decoration: none;
+  font-family: poppins;
+}
+.nav-Links {
+  text-decoration: none;
+  padding: 0 0.8rem;
+}
