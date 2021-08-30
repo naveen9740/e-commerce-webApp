@@ -1,14 +1,19 @@
 import { Route, Routes, Link } from "react-router-dom";
+import { Navbar } from "./Components";
+import { Home, Address, Cart, Login, WishList, ProductDetails, Products, PageNotFound } from "./Pages";
 
 function App() {
   return (
     <div className="App">
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
+      <Navbar />
       <Routes>
         <Route path="//" element={<Home />} />
-        <Route path='*' element={<NotFound />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/wishList" element={<WishList />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/address" element={<Address />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );
