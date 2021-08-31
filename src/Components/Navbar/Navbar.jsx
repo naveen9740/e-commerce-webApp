@@ -7,7 +7,7 @@ import "./Navbar.css";
 
 let Navbar = () => {
   return (
-    <div>
+    <div style={{ position: "fixed", width: "99vw" }}>
       <nav className="nav">
         <Link className="nav-Links" to="/">
           Nk Mart
