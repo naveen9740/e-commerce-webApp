@@ -1,53 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { ProductCard } from "../Components/ProductCard";
+import { useCart } from "../Context/CartContext";
 
 let Products = () => {
-  let [data, setData] = useState([]);
-  let [loading, setLoading] = useState(false);
+  let { data } = useCart();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        setLoading(true);
-        let response = await fetch("/api/products");
-        let { products } = await response.json();
-        setData(data.concat(products));
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
   return (
-    <div style={{ position: "absolute", top: "6.25rem", textAlign: "center" }}>
-      {loading && <h2>Products Loading.....</h2>}
-      {!loading && <h2>This is Products page</h2>}
-      <div style={{ display: "flex", border: "1px solid black" }}>
-        {!loading && (
-          <aside style={{ width: "1000px" }} className="filter">
-            Filter section
-          </aside>
-        )}
-        <section className="product-info">
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              border: "1px solid red",
-            }}
-          >
-            {data.map((product) => {
-              return (
-                <ProductCard
-                  name={product.name}
-                  price={product.price}
-                  img={product.img}
-                  mrp={product.mrp}
-                />
-              );
-            })}
-          </div>
-        </section>
+    <div style={{ position: 'absolute', top: '100px', display: 'flex', flexDirection: 'row' }}>
+      <div style={{ border: '1px solid red', textAlign: 'center' }}>
+        <h2>Products page</h2>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+          {data.map((product, index) => {
+            return (
+              <ProductCard
+                key={index}
+                name={product.name}
+                price={product.price}
+                img={product.img}
+                mrp={product.mrp}
+                id={product.id}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

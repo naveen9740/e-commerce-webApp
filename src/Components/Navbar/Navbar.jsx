@@ -4,10 +4,12 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import "./Navbar.css";
+import { useCart } from "../../Context/CartContext";
 
 let Navbar = () => {
+  let { cartItem, setCartItem } = useCart()
   return (
-    <div style={{ position: "fixed", width: "99vw" }}>
+    <div >
       <nav className="nav">
         <Link className="nav-Links" to="/">
           Nk Mart
@@ -25,6 +27,7 @@ let Navbar = () => {
             <FavoriteIcon fontSize="large" />
           </Link>
           <Link className="nav-Links" to="/cart">
+            <span style={{ position: 'relative', right: '1px' }}>{cartItem.length}</span>
             <ShoppingCartIcon fontSize="large" />
           </Link>
           <Link className="nav-Links" to="/login">

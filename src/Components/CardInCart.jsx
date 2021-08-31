@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useCart } from "../Context/CartContext";
 
-export let ProductCard = ({ id, name, img, price, mrp }) => {
+export let CartCard = ({ id, name, img, price, mrp }) => {
+    let { dispatch } = useCart();
     let [toast, setToast] = useState(false);
-    let { data, item, dispatch } = useCart()
     return (
         <div
             style={{
@@ -37,11 +37,11 @@ export let ProductCard = ({ id, name, img, price, mrp }) => {
                 </span>
             </div>
             <button
-                onClick={() => dispatch({ type: 'ADDTOCART', payload: { id } })}
+                onClick={() => dispatch({ type: 'REMOVEFROMCART', payload: { id } })}
             >
-                Add to Cart
+                Remove From Cart
             </button>
-            {toast && <div>Item Added To toast</div>}
+            {toast && <div>Item Added To Cart</div>}
             <button
                 onClick={() => {
                     console.log("click");
