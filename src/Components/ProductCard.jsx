@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useCart } from "../Context/CartContext";
+import { Link } from "react-router-dom";
 
 export let ProductCard = ({ id, name, img, price, mrp }) => {
     let [toast, setToast] = useState(false);
@@ -14,7 +15,7 @@ export let ProductCard = ({ id, name, img, price, mrp }) => {
                 width: "350px",
                 justifyContent: "center",
                 alignItems: "center",
-                height: "300px",
+                height: "330px",
                 border: "1px solid red",
                 margin: "0.5rem",
                 padding: "0.3rem",
@@ -46,6 +47,7 @@ export let ProductCard = ({ id, name, img, price, mrp }) => {
             >
                 Add to Cart
             </button>
+            <Link to={`/productDetails/${id}`}>View More Details</Link>
             {toast && <div>Item Added To toast</div>}
             <button
                 onClick={() => {
