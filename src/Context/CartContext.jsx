@@ -13,6 +13,8 @@ export let CartContext = ({ children }) => {
     let [cartItem, setCartItem] = useState([]);
     let [loading, setLoading] = useState(false);
     let [data, setData] = useState([]);
+    let [wishList, setWishList] = useState([]);
+
     useEffect(() => {
         (async () => {
             try {
@@ -27,14 +29,14 @@ export let CartContext = ({ children }) => {
         })();
     }, []);
 
-    let [value, dispatch] = useReducer(reduceFxn, { data, cartItem });
+    let [value, dispatch] = useReducer(reduceFxn, { data, cartItem, wishList });
     value.data = data;
     return (
         <Cart.Provider
             value={{
                 data: data,
                 cartItem: value.cartItem,
-                setCartItem,
+                wishList: value.wishList,
                 dispatch,
             }}
         >
@@ -57,6 +59,14 @@ let reduceFxn = (state, action) => {
         case "REMOVEFROMCART":
             return {
                 ...state, cartItem: state.cartItem.filter((item) => !(item.id === action.payload.id))
+            }
+        case "ADDTOWISHLIST":
+            return {
+                ...state, wishList: state.wishList.concat(state.data.filter((item) => item.id === action.payload.id))
+            }
+        case "REMOVEFROMWISHLIST":
+            return {
+                ...state, wishList: state.wishList.filter((item) => !(item.id === action.payload.id))
             }
         default:
             return { ...state }

@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useCart } from "../Context/CartContext";
 
-export let ProductCard = ({ id, name, img, price, mrp }) => {
+export let WishListCard = ({ id, name, img, price, mrp }) => {
     let [toast, setToast] = useState(false);
     let { dispatch } = useCart()
-    let [heart, setHeart] = useState(false);
-
     return (
         <div
             style={{
@@ -39,18 +37,14 @@ export let ProductCard = ({ id, name, img, price, mrp }) => {
                 </span>
             </div>
             <button
-                onClick={() => {
-
-                    return dispatch({ type: 'ADDTOCART', payload: { id } })
-                }}
+                onClick={() => dispatch({ type: 'ADDTOCART', payload: { id } })}
             >
                 Add to Cart
             </button>
             {toast && <div>Item Added To toast</div>}
             <button
                 onClick={() => {
-                    setHeart(!heart)
-                    return dispatch({ type: 'ADDTOWISHLIST', payload: { id } })
+                    return dispatch({ type: 'REMOVEFROMWISHLIST', payload: { id } })
                 }}
                 style={{
                     position: "absolute",
@@ -59,7 +53,7 @@ export let ProductCard = ({ id, name, img, price, mrp }) => {
                     fontSize: "1rem",
                 }}
             >
-                {heart ? '❤️' : '❤'}
+                ❤️
             </button>
         </div>
     );

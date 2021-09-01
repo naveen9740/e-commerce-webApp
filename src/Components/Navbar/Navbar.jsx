@@ -7,7 +7,7 @@ import "./Navbar.css";
 import { useCart } from "../../Context/CartContext";
 
 let Navbar = () => {
-  let { cartItem, setCartItem } = useCart()
+  let { cartItem, wishList } = useCart()
   return (
     <div >
       <nav className="nav">
@@ -24,6 +24,7 @@ let Navbar = () => {
         </div>
         <div>
           <Link className="nav-Links" to="/wishList">
+            <span style={{ position: 'relative', right: '1px' }}>{wishList.length}</span>
             <FavoriteIcon fontSize="large" />
           </Link>
           <Link className="nav-Links" to="/cart">
